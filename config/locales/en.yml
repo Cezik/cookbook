@@ -5,15 +5,22 @@ en:
     delete: Delete
     update: Update
     title: Title
+    forgot_your_password: Forgot your password?
   menu_links:
     main_page: Home Page
     about_page: About
     sign_in_page: Sign in
+    sign_up_page: Sign up
     contact_page: Contact
     food_category_page: 'Food Categories'
+    sign_out: Sign out
   food_category:
     add_new: Add new food category
     confirm_delete: Are you sure you want to delete this category?
+    added_new: Success! New category has been added.
+    not_added_new: Error! Cannot add new category.
+    updated: Success! Category has been updated.
+    not_updated: Error! Cannot update category.
 
   activerecord:
     attributes:

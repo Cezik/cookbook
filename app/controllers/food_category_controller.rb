@@ -12,11 +12,11 @@ class FoodCategoryController < ApplicationController
   def create
     @foodcategory = FoodCategory.new(foodcategory_params)
     if @foodcategory.save
-      flash[:success] = 'zapisano'
+      flash[:success] = t('food_category.added_new')
       redirect_to food_category_index_path
     else
-      flash.now[:error] = 'błąd'
-      render new
+      flash.now[:error] = t('food_category.not_added_new')
+      render 'new'
     end
   end
 
@@ -27,11 +27,11 @@ class FoodCategoryController < ApplicationController
   def update
     @foodcategory = FoodCategory.find(params[:id])
     if @foodcategory.update(foodcategory_params)
-      flash[:success] = 'zaktualizowano'
+      flash[:success] = t('food_category.updated')
       redirect_to food_category_index_path
     else
-      flash.now[:error] = 'błąd'
-      render edit
+      flash.now[:error] = t('food_category.not_updated')
+      render 'edit'
     end
   end
 

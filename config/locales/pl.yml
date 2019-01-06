@@ -5,18 +5,31 @@ pl:
     delete: Usuń
     update: Zapisz
     title: Tytuł
+    forgot_your_password: Zapomniałeś hasła?
   menu_links:
     main_page: Strona Główna
     about_page: O stronie
     sign_in_page: Zaloguj się
+    sign_up_page: Zarejestruj się
     contact_page: Kontakt
     food_category_page: Kategorie dań
     new_food_category_page: Dodaj nową kategorię
+    sign_out: Wyloguj się
   food_category:
     add_new: Dodaj nową kategorię
     confirm_delete: Czy na pewno usunąć kategorię?
+    added_new: Sukces! Dodano nową kategorię.
+    not_added_new: Błąd! Nie można dodać nowej kategorii.
+    updated: Sukces! Zapisano zmiany w kategorii.
+    not_updated: Błąd! Nie można zapisać zmian w kategorii.
 
   activerecord:
+    errors:
+      models:
+        food_category:
+          attributes:
+            title:
+              taken: 'jest już w naszej bazie!'
     attributes:
       food_category:
         title: Nazwa kategorii

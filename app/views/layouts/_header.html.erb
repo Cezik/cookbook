@@ -4,10 +4,16 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to t('menu_links.main_page'), root_path %></li>
-          <li><%= link_to t('menu_links.food_category_page'), food_category_index_path %></li>
-            <li><%= link_to t('menu_links.new_food_category_page'), new_food_category_path %></li>
+        <li><%= link_to t('menu_links.food_category_page'), food_category_index_path %></li>
+        <li><%= link_to t('menu_links.new_food_category_page'), new_food_category_path %></li>
         <li><%= link_to t('menu_links.about_page'), about_path %></li>
-        <li><%= link_to t('menu_links.sign_in_page'), '#' %></li>
+
+        <% if user_signed_in? %>
+          <b><%= current_user.email %></b>
+          <%= link_to t('menu_links.sign_out'), destroy_user_session_path, method: :delete %>
+        <% else %>
+          <li><%= link_to t('menu_links.sign_in_page'), new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
