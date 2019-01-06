@@ -1,6 +1,27 @@
 en:
+  main:
+    back: Back
+    edit: Edit
+    delete: Delete
+    update: Update
+    title: Title
   menu_links:
     main_page: Home Page
     about_page: About
     sign_in_page: Sign in
     contact_page: Contact
+    food_category_page: 'Food Categories'
+  food_category:
+    add_new: Add new food category
+    confirm_delete: Are you sure you want to delete this category?
+
+  activerecord:
+    attributes:
+      food_category:
+        title: Nazwa of category
+    models:
+      food_category: 'Food Category'
+  helpers:
+    submit:
+      create: 'Create %{model}'
+      update: 'Update'

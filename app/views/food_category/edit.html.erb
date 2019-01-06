@@ -1,0 +1,14 @@
+<% provide(:title, t('main.edit') + ' ' + @foodcategory.title) %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for @foodcategory, url: food_category_path(@foodcategory.id), :method => :PATCH, wrapper: :horizontal_form do |f| %>
+      <h1><%= t('main.edit') + ' - ' + @foodcategory.title %></h1>
+      <hr/>
+      <%= f.input :title %>
+      <hr/>
+      <%= f.button :submit, class: 'btn btn-success' %>
+
+      <%= link_to t('main.back'), :back, class: 'back-button btn btn-info' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% provide(:title, t('food_category.add_new')) %>
+<h1><%= t('food_category.add_new') %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for @foodcategory, url: food_category_index_path, wrapper: :horizontal_form do |f| %>
+    <hr/>
+    <%= f.input :title %>
+    <hr/>
+    <%= f.button :submit, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

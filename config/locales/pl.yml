@@ -1,6 +1,28 @@
 pl:
+  main:
+    back: Powrót
+    edit: Edytuj
+    delete: Usuń
+    update: Zapisz
+    title: Tytuł
   menu_links:
     main_page: Strona Główna
     about_page: O stronie
     sign_in_page: Zaloguj się
     contact_page: Kontakt
+    food_category_page: Kategorie dań
+    new_food_category_page: Dodaj nową kategorię
+  food_category:
+    add_new: Dodaj nową kategorię
+    confirm_delete: Czy na pewno usunąć kategorię?
+
+  activerecord:
+    attributes:
+      food_category:
+        title: Nazwa kategorii
+    models:
+      food_category: 'Kategoria Dań'
+  helpers:
+    submit:
+      create: 'Utwórz %{model}'
+      update: 'Zapisz %{model}'

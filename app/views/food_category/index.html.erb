@@ -1,0 +1,26 @@
+<%# TODO: render edit/delete rows only if user is logged in / is admin %>
+<% provide(:title, t('activerecord.models.food_category')) %>
+<div class="row">
+  <div class="col-md-9 col-sm-offset-1">
+    <h1><%= t('activerecord.models.food_category') %></h1>
+    <div class="table-responsive">
+      <table class="table" border="1">
+        <tr class="info">
+          <td>ID</td>
+          <td><%= t('main.title') %></td>
+          <td><%= t('main.edit') %></td>
+          <td><%= t('main.delete') %></td>
+        </tr>
+
+        <% @foodcategory.each do |f| %>
+          <tr>
+            <td><%= f.id %></td>
+            <td><%= f.title %></td>
+            <td><%= link_to t('main.edit'), edit_food_category_path(f.id) %></td>
+            <td><%= link_to t('main.delete'), food_category_path(f.id), method: :delete, data: { confirm: t('food_category.confirm_delete') } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
