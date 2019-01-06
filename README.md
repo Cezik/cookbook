@@ -21,4 +21,11 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Keep in mind to edit host, port in file:
+  ```config/environments/production.rb
+  config/environments/development.rb
+  ```
+
+  ```# Devise configuration
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  ```
