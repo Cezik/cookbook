@@ -21,7 +21,7 @@
         <% @foodcategory.each do |f| %>
           <tr>
             <td><%= f.id %></td>
-            <td><%= f.title %></td>
+            <td><%= link_to f.title, food_category_path(f.id) %></td>
             <% if user_signed_in? %>
               <td><%= link_to t('main.edit'), edit_food_category_path(f.id) %></td>
               <td><%= link_to t('main.delete'), food_category_path(f.id), method: :delete, data: { confirm: t('food_category.confirm_delete') } %></td>

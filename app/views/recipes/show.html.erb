@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-9 col-sm-offset-1">
+    <h1><%= @recipe.title %></h1>
+    <hr/>
+    Poziom trudności: <%= @recipe.difficult %>
+    <p><%= @recipe.recipe_text %></p>
+    <p><%= @recipe.photo_path %></p>
+
+    <%= link_to t('main.edit'), edit_food_category_recipe_path(@recipe.id) %> |
+    <%= link_to t('main.back'), :back %>
+  </div>
+</div>

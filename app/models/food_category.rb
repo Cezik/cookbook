@@ -1,4 +1,6 @@
 class FoodCategory < ApplicationRecord
+  has_many :recipes, dependent: :destroy
+
   validates :title, presence: true
   validates :title, uniqueness: true
 
@@ -10,5 +12,4 @@ class FoodCategory < ApplicationRecord
     title[0] = title[0].capitalize
     title
   end
-
 end

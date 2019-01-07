@@ -1,4 +1,8 @@
 class FoodCategoryController < ApplicationController
+  def show
+    @foodcategory = FoodCategory.find(params[:id])
+    @recipe = @foodcategory.recipes.new
+  end
 
   def index
     @foodcategory = FoodCategory.all

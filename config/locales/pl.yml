@@ -6,6 +6,7 @@ pl:
     update: Zapisz
     title: Tytuł
     forgot_your_password: Zapomniałeś hasła?
+    new_recipe: Nowy przepis
   menu_links:
     main_page: Strona Główna
     about_page: O stronie
@@ -22,6 +23,9 @@ pl:
     not_added_new: Błąd! Nie można dodać nowej kategorii.
     updated: Sukces! Zapisano zmiany w kategorii.
     not_updated: Błąd! Nie można zapisać zmian w kategorii.
+  recipe:
+    not_updated: Błąd! Nie można zapisać zmian w przepisie.
+    updated: Sukces! Zapisano zmiany w przepisie.
 
   activerecord:
     errors:
@@ -33,8 +37,15 @@ pl:
     attributes:
       food_category:
         title: Nazwa kategorii
+      recipe:
+        title: 'Nazwa przepisu:'
+        difficult: 'Poziom trudności:'
+        photo_path: 'Zdjęcie:'
+        food_category_id: 'Kategoria:'
+        recipe_text: 'Przepis:'
     models:
-      food_category: 'Kategoria Dań'
+      food_category: Kategoria Dań
+      recipe: Przepis
   helpers:
     submit:
       create: 'Utwórz %{model}'
