@@ -4,6 +4,7 @@
     <hr/>
     <%= simple_form_for @recipe, url: food_category_recipes_path, wrapper: :horizontal_form do |f| %>
       <%= f.input :title %>
+      <%= f.label :difficult, t('activerecord.attributes.recipe.difficult') + ' 3', class: "recipe_difficult_text" %>
       <%= f.range_field :difficult, :in => 1..5 %>
       <%= f.input :photo_path %>
       <%= f.label t('menu_links.food_category_page') %>
