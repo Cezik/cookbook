@@ -102,11 +102,16 @@ footer {
   text-anchor: middle;
 }
 
-.text-muted
-{
+.text-muted {
   margin-top: 5px;
   margin-right: 10px;
   float: right;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #00b3db;
+  border-color: #285e8e;
 }
 
 input, textarea, select, .uneditable-input {
