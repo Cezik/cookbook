@@ -30,6 +30,7 @@ pl:
     added_new: Sukces! Dodano nowy przepis.
     not_added_new: Błąd! Nie można dodać nowego przepisu.
     deleted: Przepis został usunięty.
+    delete_confirm: Czy na pewno usunąć danie?
 
   activerecord:
     errors:

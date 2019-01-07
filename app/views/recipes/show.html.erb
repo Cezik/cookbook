@@ -7,6 +7,7 @@
     <p><%= @recipe.photo_path %></p>
 
     <%= link_to t('main.edit'), edit_food_category_recipe_path(@recipe.id) %> |
-    <%= link_to t('main.back'), :back %>
+    <%= link_to t('main.delete'), food_category_recipe_path(@recipe.food_category_id, @recipe.id), method: :delete, data: {confirm: t('recipe.delete_confirm')} %> |
+    <%= link_to t('main.back'), food_category_path(@recipe.food_category_id) %>
   </div>
 </div>

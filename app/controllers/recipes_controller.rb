@@ -18,10 +18,12 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @foodcategory = FoodCategory.find(params[:food_category_id])
+    # @recipe = @foodcategory.Recipe(recipe_params)
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       flash[:success] = t('recipe.added_new')
-      redirect_to food_category_recipe_path(@recipe.id)
+      redirect_to food_category_recipe_path(@foodcategory.id, @recipe.id)
     else
       flash.now[:error] = t('recipe.not_added_new')
       render 'new'
@@ -39,9 +41,9 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    recipe.destroy
+    @recipe.destroy
     flash[:success] = t('recipe.deleted')
-    redirect_to food_category_index_path
+    redirect_to food_category_path(@recipe.food_category_id)
   end
 
   private
