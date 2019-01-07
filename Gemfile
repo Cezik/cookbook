@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-ujs', '~> 0.1.0'
 gem 'autoprefixer-rails'
 
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'bootstrap-sass', '3.4.0'
 gem 'simple_form'
 gem 'devise'

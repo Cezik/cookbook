@@ -7,27 +7,28 @@
   <% end %>
     <h1><%= t('activerecord.models.food_category') %></h1>
     <hr/>
-    <div class="table-responsive">
-      <table class="table" border="1">
-        <tr class="info">
-          <td>ID</td>
-          <td><%= t('main.title') %></td>
+    <div class="table-responsive-sm">
+      <table class="table table-dark" border="1">
+        <thead>
+          <th>ID</th>
+          <th><%= t('main.title') %></th>
           <% if user_signed_in? %>
-            <td><%= t('main.edit') %></td>
-            <td><%= t('main.delete') %></td>
+            <th><%= t('main.edit') %></th>
+            <th><%= t('main.delete') %></th>
           <% end %>
-        </tr>
-
-        <% @foodcategory.each do |f| %>
-          <tr>
-            <td><%= f.id %></td>
-            <td><%= link_to f.title, food_category_path(f.id) %></td>
-            <% if user_signed_in? %>
-              <td><%= link_to t('main.edit'), edit_food_category_path(f.id) %></td>
-              <td><%= link_to t('main.delete'), food_category_path(f.id), method: :delete, data: { confirm: t('food_category.confirm_delete') } %></td>
-            <% end %>
-          </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @foodcategory.each do |f| %>
+            <tr>
+              <td><%= f.id %></td>
+              <td><%= link_to f.title, food_category_path(f.id) %></td>
+              <% if user_signed_in? %>
+                <td><%= link_to t('main.edit'), edit_food_category_path(f.id) %></td>
+                <td><%= link_to t('main.delete'), food_category_path(f.id), method: :delete, data: { confirm: t('food_category.confirm_delete') } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>
