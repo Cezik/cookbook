@@ -24,8 +24,12 @@ pl:
     updated: Sukces! Zapisano zmiany w kategorii.
     not_updated: Błąd! Nie można zapisać zmian w kategorii.
   recipe:
+    add_new: Dodaj nowy przepis
     not_updated: Błąd! Nie można zapisać zmian w przepisie.
     updated: Sukces! Zapisano zmiany w przepisie.
+    added_new: Sukces! Dodano nowy przepis.
+    not_added_new: Błąd! Nie można dodać nowego przepisu.
+    deleted: Przepis został usunięty.
 
   activerecord:
     errors:

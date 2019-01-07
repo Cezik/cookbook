@@ -1,6 +1,8 @@
 class FoodCategoryController < ApplicationController
-  def show
-    @foodcategory = FoodCategory.find(params[:id])
+
+  before_action :set_foodcategory, only: [:show, :edit, :update, :destroy]
+
+  def show=
     @recipe = @foodcategory.recipes.new
   end
 
@@ -25,11 +27,9 @@ class FoodCategoryController < ApplicationController
   end
 
   def edit
-    @foodcategory = FoodCategory.find(params[:id])
   end
 
   def update
-    @foodcategory = FoodCategory.find(params[:id])
     if @foodcategory.update(foodcategory_params)
       flash[:success] = t('food_category.updated')
       redirect_to food_category_index_path
@@ -40,12 +40,15 @@ class FoodCategoryController < ApplicationController
   end
 
   def destroy
-    foodcategory = FoodCategory.find(params[:id])
     foodcategory.destroy
     redirect_to foodcategory_path
   end
 
   private
+
+  def set_foodcategory
+    @foodcategory = FoodCategory.find(params[:id])
+  end
 
   def foodcategory_params
     params.require(:food_category).permit(:title)
