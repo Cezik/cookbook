@@ -45,7 +45,7 @@ pl:
         title: Nazwa kategorii
       recipe:
         title: 'Nazwa przepisu:'
-        difficult: 'Poziom trudności:'
+        difficult: 'Trudność:'
         photo_path: 'Zdjęcie:'
         food_category_id: 'Kategoria:'
         recipe_text: 'Przepis:'

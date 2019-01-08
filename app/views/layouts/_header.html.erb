@@ -9,8 +9,8 @@
         <li><%= link_to t('menu_links.about_page'), about_path %></li>
 
         <% if user_signed_in? %>
-          <b><%= current_user.email %></b>
-          <%= link_to t('menu_links.sign_out'), destroy_user_session_path, method: :delete %>
+          <li><%= link_to current_user.email, edit_user_registration_path %></li>
+          <li><%= link_to t('menu_links.sign_out'), destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to t('menu_links.sign_in_page'), new_user_session_path %></li>
         <% end %>
