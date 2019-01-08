@@ -2,7 +2,7 @@ class FoodCategoryController < ApplicationController
 
   before_action :set_foodcategory, only: [:show, :edit, :update, :destroy]
 
-  def show=
+  def show
     @recipe = @foodcategory.recipes.new
   end
 
