@@ -2,7 +2,15 @@
   <div class="col-md-9 col-sm-offset-1">
     <h1><%= @recipe.title %></h1>
     <hr/>
-    Poziom trudności: <%= @recipe.difficult %>
+
+    <%= t('activerecord.attributes.recipe.difficult') + ' ' %>
+    <% @recipe.difficult.times do %>
+      <span class="glyphicon glyphicon-star"></span>
+    <% end %>
+    <% @recipe.blank_stars.times do %>
+      <span class="glyphicon glyphicon-star-empty"></span>
+    <% end %>
+
     <p><%= @recipe.recipe_text %></p>
     <p><%= @recipe.photo_path %></p>
 

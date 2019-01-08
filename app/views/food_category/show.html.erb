@@ -1,7 +1,8 @@
 <%# TODO: show button only if user is an admin %>
-
+<% if user_signed_in? %>
 <%= link_to t('recipe.add_new'), new_food_category_recipe_path(@foodcategory.id), class: "btn btn-sm btn-primary" %>
 &nbsp;
+<% end %>
 <%#= link_to t('menu_links.food_category_page'), food_category_index_path, class: "btn btn-sm btn-primary" %>
 <hr/>
 <div class="album py-5 bg-light">
@@ -12,17 +13,26 @@
           <div class="card mb-4 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title><%= f.title %></title><rect fill="#55595c" width="100%" height="100%"/><text fill="#eceeef" dy=".3em" x="50%" y="50%"><%= f.title %></text></svg>
             <div class="card-body">
-              <p class="card-text"><%= f.recipe_text %></p>
+              <p class="card-text"><%= excerpt(f.recipe_text, '', radius: 50) %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group btn-recipes">
                   <%= link_to t('main.show_recipe'), food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
 
 <%# # TODO: show edit and delete button only if user is an admin %>
-
-                  <%= link_to t('main.edit'), edit_food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
-                  <%= link_to t('main.delete'), food_category_recipe_path(@foodcategory.id, f.id), method: :delete, class: "btn btn-sm btn-primary", data: { confirm: t('recipe.delete_confirm') } %>
+                  <% if user_signed_in? %>
+                    <%= link_to t('main.edit'), edit_food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
+                    <%= link_to t('main.delete'), food_category_recipe_path(@foodcategory.id, f.id), method: :delete, class: "btn btn-sm btn-primary", data: { confirm: t('recipe.delete_confirm') } %>
+                  <% end %>
                 </div>
-                <small class="text-muted"><%= t('activerecord.attributes.recipe.difficult') + ' ' + f.difficult.to_s %></small>
+                <small class="text-muted">
+                  <%= t('activerecord.attributes.recipe.difficult') + ' ' %>
+                  <% f.difficult.times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% f.blank_stars.times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </small>
               </div>
             </div>
           </div>

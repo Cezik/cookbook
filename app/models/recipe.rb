@@ -7,12 +7,14 @@ class Recipe < ApplicationRecord
 
   validate :capitalize_fist_char, if: :title
 
+  def blank_stars
+    5 - difficult
+  end
+
   private
 
   def capitalize_fist_char
-    if title.length > 0
-      title[0] = title[0].capitalize
-    end
+    title[0] = title[0].capitalize if title.length.positive?
     title
   end
 end
