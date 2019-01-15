@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :food_category
+  belongs_to :user
 
   validates :title, :recipe_text, :difficult, :photo_path, :food_category_id, presence: true
   validates :title, uniqueness: true

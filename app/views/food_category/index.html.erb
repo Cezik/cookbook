@@ -1,6 +1,6 @@
 <% provide(:title, t('activerecord.models.food_category')) %>
 <div class="row">
-  <% if user_signed_in? %>
+  <% if can?(:read, @foodcategory) %>
     <div class="col-md-9 col-sm-offset-1">
   <% else %>
     <div class="col-md-3 col-sm-offset-4">
@@ -12,8 +12,10 @@
         <thead>
           <th>ID</th>
           <th><%= t('main.title') %></th>
-          <% if user_signed_in? %>
+          <% if can?(:update, @foodcategory) %>
             <th><%= t('main.edit') %></th>
+          <% end %>
+          <% if can?(:destroy, @foodcategory) %>
             <th><%= t('main.delete') %></th>
           <% end %>
         </thead>
@@ -22,8 +24,10 @@
             <tr>
               <td><%= f.id %></td>
               <td><%= link_to f.title, food_category_path(f.id) %></td>
-              <% if user_signed_in? %>
+              <% if can?(:update, @foodcategory) %>
                 <td><%= link_to t('main.edit'), edit_food_category_path(f.id) %></td>
+              <% end %>
+              <% if can?(:destroy, @foodcategory) %>
                 <td><%= link_to t('main.delete'), food_category_path(f.id), method: :delete, data: { confirm: t('food_category.confirm_delete') } %></td>
               <% end %>
             </tr>

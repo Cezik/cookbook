@@ -1,29 +1,33 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.accessible_by(current_ability, :index)
   end
 
   def show
-    # TODO: no idea what to do
+    authorize! :show, @recipe
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.new
+    authorize! :new, @recipe
   end
 
   def edit
-    # TODO: no idea what to do
+    authorize! :edit, @recipe
   end
 
   def create
-    @foodcategory = FoodCategory.find(params[:food_category_id])
     # @recipe = @foodcategory.Recipe(recipe_params)
+    @foodcategory = FoodCategory.find(params[:food_category_id])
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
+    authorize! :create, @recipe
     if @recipe.save
       flash[:success] = t('recipe.added_new')
-      redirect_to food_category_recipe_path(@foodcategory.id, @recipe.id)
+      redirect_to food_category_recipe_path(@foodcategory, @recipe.id)
     else
       flash.now[:error] = t('recipe.not_added_new')
       render 'new'
@@ -31,6 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    authorize! :update, @recipe
     if @recipe.update(recipe_params)
       flash[:success] = t('recipe.updated')
       redirect_to food_category_recipe_path(@recipe.id)
@@ -41,6 +46,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @recipe
     @recipe.destroy
     flash[:success] = t('recipe.deleted')
     redirect_to food_category_path(@recipe.food_category_id)
@@ -53,6 +59,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :difficult, :photo_path, :food_category_id, :recipe_text, :likes, :hates)
+    params.require(:recipe).permit(:title, :difficult, :photo_path, :food_category_id, :recipe_text)
   end
 end

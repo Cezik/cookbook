@@ -1,22 +1,25 @@
 class FoodCategoryController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_foodcategory, only: [:show, :edit, :update, :destroy]
 
   def show
     @recipe = @foodcategory.recipes.new
+    authorize! :read, @foodcategory
   end
 
   def index
-    @foodcategory = FoodCategory.all
+    @foodcategory = FoodCategory.accessible_by(current_ability, :index)
   end
 
   def new
     @foodcategory = FoodCategory.new
+    authorize! :new, @foodcategory
     render
   end
 
   def create
     @foodcategory = FoodCategory.new(foodcategory_params)
+    authorize! :create, @foodcategory
     if @foodcategory.save
       flash[:success] = t('food_category.added_new')
       redirect_to food_category_index_path
@@ -27,9 +30,11 @@ class FoodCategoryController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @foodcategory
   end
 
   def update
+    authorize! :update, @foodcategory
     if @foodcategory.update(foodcategory_params)
       flash[:success] = t('food_category.updated')
       redirect_to food_category_index_path
@@ -40,6 +45,7 @@ class FoodCategoryController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @foodcategory
     foodcategory.destroy
     redirect_to foodcategory_path
   end

@@ -19,8 +19,10 @@
                   <%= link_to t('main.show_recipe'), food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
 
 <%# # TODO: show edit and delete button only if user is an admin %>
-                  <% if user_signed_in? %>
+                  <% if can?(:update, f) %>
                     <%= link_to t('main.edit'), edit_food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
+                  <% end %>
+                  <% if can?(:destroy, f) %>
                     <%= link_to t('main.delete'), food_category_recipe_path(@foodcategory.id, f.id), method: :delete, class: "btn btn-sm btn-primary", data: { confirm: t('recipe.delete_confirm') } %>
                   <% end %>
                 </div>
