@@ -45,6 +45,8 @@ gem 'bootstrap-sass', '3.4.0'
 gem 'simple_form'
 gem 'devise'
 gem 'cancancan'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'pry-byebug'

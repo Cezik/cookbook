@@ -2,7 +2,9 @@ class Recipe < ApplicationRecord
   belongs_to :food_category
   belongs_to :user
 
-  validates :title, :recipe_text, :difficult, :photo_path, :food_category_id, presence: true
+  mount_uploader :image, DishUploader
+
+  validates :title, :recipe_text, :difficult, :image, :food_category_id, presence: true
   validates :title, uniqueness: true
   validates :title, length: { minimum: 5 }
 

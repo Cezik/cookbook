@@ -13,7 +13,7 @@
     <% end %>
 
     <p><%= @recipe.recipe_text %></p>
-    <p><%= @recipe.photo_path %></p>
+    <%= image_tag @recipe.image.url, alt: "#{@recipe.title}" %>
     <p><%= @recipe.user.email if @recipe.user %></p>
 
     <div class="btn-group">
