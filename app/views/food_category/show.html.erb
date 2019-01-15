@@ -1,9 +1,13 @@
-<%# TODO: show button only if user is an admin %>
+<% provide(:title, @foodcategory.title) %>
+
+<%# TODO: Fix to don't show button for everyone %>
 <% if user_signed_in? %>
-<%= link_to t('recipe.add_new'), new_food_category_recipe_path(@foodcategory.id), class: "btn btn-sm btn-primary" %>
+  <%= link_to t('recipe.add_new'), new_food_category_recipe_path(@foodcategory.id), class: "btn btn-sm btn-primary" %>
 &nbsp;
 <% end %>
+
 <%#= link_to t('menu_links.food_category_page'), food_category_index_path, class: "btn btn-sm btn-primary" %>
+
 <hr/>
 <div class="album py-5 bg-light">
   <div class="container">
@@ -18,7 +22,6 @@
                 <div class="btn-group btn-recipes">
                   <%= link_to t('main.show_recipe'), food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
 
-<%# # TODO: show edit and delete button only if user is an admin %>
                   <% if can?(:update, f) %>
                     <%= link_to t('main.edit'), edit_food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-sm btn-primary" %>
                   <% end %>

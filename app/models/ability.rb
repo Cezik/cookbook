@@ -8,6 +8,7 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     elsif user.role == 'user'
+      can :create, Recipe
       can :manage, Recipe, user_id: user.id
       can :read, FoodCategory
     end
