@@ -6,10 +6,11 @@
     <%= simple_form_for @recipe, url: food_category_recipe_path, :method => :PATCH, wrapper: :horizontal_form do |f| %>
       <%= f.input :title %>
       <%= f.label :difficult, t('activerecord.attributes.recipe.difficult') + ' ' + @recipe.difficult.to_s, class: "recipe_difficult_text" %>
-      <br/>
       <%= f.range_field :difficult, :in => 1..5 %>
+      <br/>
       <%= f.label t('menu_links.food_category_page') %>
       <%= f.collection_select(:food_category_id, FoodCategory.all, :id, :title) %>
+      <%= f.input :ingredients %>
       <%= f.input :recipe_text %>
       <%= f.input :image %>
       <hr/>

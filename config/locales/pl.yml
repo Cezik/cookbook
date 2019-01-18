@@ -49,6 +49,10 @@ pl:
         photo_path: 'Zdjęcie:'
         food_category_id: 'Kategoria:'
         recipe_text: 'Przepis:'
+        image: 'Zdjęcie potrawy:'
+        like: Pychota!
+        hate: Ohyda!
+        ingredients: Składniki
     models:
       food_category: Kategoria Dań
       recipe: Przepis

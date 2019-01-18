@@ -10,6 +10,7 @@
       <br/>
       <%= f.label t('menu_links.food_category_page') %>
       <%= f.collection_select(:food_category_id, FoodCategory.all, :id, :title) %>
+      <%= f.input :ingredients %>
       <%= f.input :recipe_text %>
       <%= f.input :image %>
       <hr/>

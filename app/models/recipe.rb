@@ -5,9 +5,10 @@ class Recipe < ApplicationRecord
 
   mount_uploader :image, DishUploader
 
-  validates :title, :recipe_text, :difficult, :image, :food_category_id, presence: true
+  validates :title, :recipe_text, :difficult, :ingredients, :image, :food_category_id, presence: true
   validates :title, uniqueness: true
   validates :title, length: { minimum: 5 }
+  validates :ingredients, length: { minimum: 5 }
 
   validate :capitalize_fist_char, if: :title
 
