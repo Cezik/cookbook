@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 
 /*flash*/
 .alert-error {
@@ -40,6 +42,7 @@ body {
   padding-top: 60px;
   background-color: #252525;
   color: #9b9b9b;
+  font-family: 'Roboto', sans-serif;
 }
 
 section {

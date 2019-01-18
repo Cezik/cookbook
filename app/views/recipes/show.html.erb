@@ -4,6 +4,11 @@
     <h1><%= @recipe.title %></h1>
 
     <div class="btn-group">
+      <%= link_to food_category_path(@recipe.food_category_id), class: 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <%= t('main.back') %>
+      <% end %>
+
       <%= link_to vote_food_category_recipe_path(@recipe.food_category_id, @recipe), method: :post, class: 'btn btn-primary' do %>
         <span class="glyphicon glyphicon-thumbs-up"></span>
         <%= t('activerecord.attributes.recipe.like') %>
@@ -26,16 +31,12 @@
         <% end %>
       </button>
 
-      <%= link_to food_category_path(@recipe.food_category_id), class: 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-arrow-left"></span>
-      <%= t('main.back') %>
-      <% end %>
-
       <% if can?(:update, @recipe) %>
         <%= link_to edit_food_category_recipe_path(@recipe.food_category_id, @recipe.id), class: 'btn btn-primary' do %>
           <span class="glyphicon glyphicon-wrench"></span> <%= t('main.edit') %>
         <% end %>
       <% end %>
+
       <% if can?(:destroy, @recipe) %>
         <%= link_to food_category_recipe_path(@recipe.food_category_id, @recipe.id), method: :delete, data: {confirm: t('recipe.delete_confirm')}, class: 'btn btn-primary' do %>
           <span class="glyphicon glyphicon-wrench"></span> <%= t('main.delete') %>

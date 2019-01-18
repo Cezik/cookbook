@@ -8,6 +8,7 @@ pl:
     forgot_your_password: Zapomniałeś hasła?
     new_recipe: Nowy przepis
     show_recipe: Pokaż przepis
+    top_rated_recipes: Najwyżej oceniane przepisy
   menu_links:
     main_page: Strona Główna
     about_page: O stronie
@@ -15,6 +16,7 @@ pl:
     sign_up_page: Zarejestruj się
     contact_page: Kontakt
     food_category_page: Kategorie dań
+    top_rated: Najwyżej oceniane
     new_food_category_page: Dodaj nową kategorię
     sign_out: Wyloguj się
   food_category:

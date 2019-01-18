@@ -64,6 +64,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def toprated
+    @recipe = Recipe.all
+  end
+
   private
 
   def set_recipe

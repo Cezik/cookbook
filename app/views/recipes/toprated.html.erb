@@ -1,0 +1,61 @@
+<% provide(:title, t('main.top_rated_recipes')) %>
+<h1><%= t('main.top_rated_recipes') %></h1>
+<hr/>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% @recipe.order(cached_votes_up: :desc, cached_votes_down: :asc).each do |f| %>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <%=
+              link_to(image_tag(f.image.thumb.url, alt: "#{f.title}",
+              class: "bg-placeholder-img card-img-top", height: '225', width: '100%'),
+              food_category_recipe_path(f.id, f.id))
+            %>
+
+            <!--
+            <%# # TODO: find some way to add part of below code to the image tag from above %>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: <%= f.title %>">
+              <title>
+                <%= f.title %>
+              </title>
+              <rect fill="#55595c" width="100%" height="100%"/>
+              <text fill="#eceeef" dy=".3em" x="50%" y="50%">
+                <%= f.title %>
+              </text>
+            </svg> -->
+
+            <div class="card-body">
+              <p class="card-text"><%= excerpt(f.recipe_text, '', radius: 50) %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group btn-recipes">
+                  <%= link_to t('main.show_recipe'), food_category_recipe_path(f.food_category_id, f.id), class: "btn btn-primary" %>
+                  <%= link_to vote_food_category_recipe_path(f.food_category_id, f), method: :post, class: 'btn btn-primary' do %>
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <%= t('activerecord.attributes.recipe.like') %>
+                    <span class="badge"><%= f.get_upvotes.size %></span>
+                  <% end %>
+
+                  <%= link_to vote_food_category_recipe_path(f.food_category_id, f.id), method: :delete, class: 'btn btn-primary' do %>
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                    <%= t('activerecord.attributes.recipe.hate') %>
+                    <span class="badge"><%= f.get_downvotes.size %></span>
+                  <% end %>
+                </div>
+                <small class="text-muted">
+                  <%= t('activerecord.attributes.recipe.difficult') + ' ' %>
+                  <% f.difficult.times do %>
+                    <span class="glyphicon glyphicon-star"></span>
+                  <% end %>
+                  <% f.blank_stars.times do %>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  <% end %>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
