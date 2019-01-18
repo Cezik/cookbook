@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :vote]
 
   def index
     @recipes = Recipe.accessible_by(current_ability, :index)
@@ -50,6 +50,18 @@ class RecipesController < ApplicationController
     @recipe.destroy
     flash[:success] = t('recipe.deleted')
     redirect_to food_category_path(@recipe.food_category_id)
+  end
+
+  def vote
+    if request.post?
+      @recipe.upvote_by current_user
+    elsif request.delete?
+      @recipe.downvote_by current_user
+    end
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      format.js
+    end
   end
 
   private

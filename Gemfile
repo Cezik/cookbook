@@ -47,6 +47,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'acts_as_votable', '~> 0.12.0'
 
 group :development, :test do
   gem 'pry-byebug'

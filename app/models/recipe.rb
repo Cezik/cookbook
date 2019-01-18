@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  acts_as_votable
   belongs_to :food_category
   belongs_to :user
 

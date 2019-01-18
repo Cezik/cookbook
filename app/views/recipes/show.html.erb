@@ -4,6 +4,23 @@
     <h1><%= @recipe.title %></h1>
     <hr/>
 
+    <p>
+      <span class="badge">
+        <%= link_to vote_food_category_recipe_path(@recipe.food_category_id, @recipe), method: :post do %>
+          Like
+          <span class="glyphicon glyphicon-arrow-up"></span>
+          <%= @recipe.get_upvotes.size %>
+        <% end %>
+      </span>
+      <span class="badge">
+      <%= link_to vote_food_category_recipe_path(@recipe.food_category_id, @recipe.id), method: :delete do %>
+        Hate
+        <span class="glyphicon glyphicon-arrow-down"></span>
+        <%= @recipe.get_downvotes.size %>
+      </span>
+      <% end %>
+    </p>
+
     <%= t('activerecord.attributes.recipe.difficult') + ' ' %>
     <% @recipe.difficult.times do %>
       <span class="glyphicon glyphicon-star"></span>
@@ -13,7 +30,7 @@
     <% end %>
 
     <p><%= @recipe.recipe_text %></p>
-    <%= image_tag @recipe.image.url, alt: "#{@recipe.title}" %>
+    <%= image_tag @recipe.image.url, alt: "#{@recipe.title}", size: '500x500' %>
     <p><%= @recipe.user.email if @recipe.user %></p>
 
     <div class="btn-group">

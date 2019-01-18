@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :food_category do
-    resources :recipes
+    resources :recipes do
+      match :vote, via: [:post, :delete], on: :member
+    end
   end
 
   root 'static_pages#home'
