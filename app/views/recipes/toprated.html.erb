@@ -4,7 +4,7 @@
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <% @recipe.order(cached_votes_up: :desc, cached_votes_down: :asc).each do |f| %>
+      <% @recipe.order(cached_votes_up: :desc, cached_votes_down: :asc).limit(10).each do |f| %>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <%=
