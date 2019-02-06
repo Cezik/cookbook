@@ -1,24 +1,47 @@
+<%# TODO: Improve showing liked/hated recipe %>
+
 <% provide(:title, @recipe.title) %>
 <div class="row">
   <div class="col-md-9 col-sm-offset-1">
     <h1><%= @recipe.title %></h1>
 
     <div class="btn-group">
-      <%= link_to food_category_path(@recipe.food_category_id), class: 'btn btn-primary' do %>
+      <%# <%= link_to food_category_path(@recipe.food_category_id), class: 'btn btn-primary' do %>
+      <%= link_to :back, class: 'btn btn-primary' do %>
         <span class="glyphicon glyphicon-arrow-left"></span>
         <%= t('main.back') %>
       <% end %>
 
       <%= link_to vote_food_category_recipe_path(@recipe.food_category_id, @recipe), method: :post, class: 'btn btn-primary' do %>
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <%= t('activerecord.attributes.recipe.like') %>
-        <span class="badge"><%= @recipe.get_upvotes.size %></span>
+        <% if current_user.voted_up_on? @recipe %>
+          <font color="yellow">
+            <strong>
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+              <%= t('activerecord.attributes.recipe.like') %>
+              <span class="badge"><%= @recipe.get_upvotes.size %></span>
+            </strong>
+          </font>
+        <% else %>
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          <%= t('activerecord.attributes.recipe.like') %>
+          <span class="badge"><%= @recipe.get_upvotes.size %></span>
+        <% end %>
       <% end %>
 
       <%= link_to vote_food_category_recipe_path(@recipe.food_category_id, @recipe.id), method: :delete, class: 'btn btn-primary' do %>
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <%= t('activerecord.attributes.recipe.hate') %>
-        <span class="badge"><%= @recipe.get_downvotes.size %></span>
+        <% if current_user.voted_down_on? @recipe %>
+          <font color="yellow">
+            <strong>
+              <span class="glyphicon glyphicon-thumbs-down"></span>
+              <%= t('activerecord.attributes.recipe.hate') %>
+              <span class="badge"><%= @recipe.get_downvotes.size %></span>
+            </strong>
+          </font>
+        <% else %>
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+          <%= t('activerecord.attributes.recipe.hate') %>
+          <span class="badge"><%= @recipe.get_downvotes.size %></span>
+        <% end %>
       <% end %>
 
       <button type="button" class="btn btn-primary">

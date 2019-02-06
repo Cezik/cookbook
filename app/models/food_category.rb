@@ -5,7 +5,7 @@ class FoodCategory < ApplicationRecord
   validates :title, uniqueness: true
   validates :title, length: { minimum: 5 }
 
-  validate :capitalize_fist_char, if: :title
+  before_validation :capitalize_fist_char, if: :title
 
   private
 

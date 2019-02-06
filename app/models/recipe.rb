@@ -10,7 +10,7 @@ class Recipe < ApplicationRecord
   validates :title, length: { minimum: 5 }
   validates :ingredients, length: { minimum: 5 }
 
-  validate :capitalize_fist_char, if: :title
+  before_validation :capitalize_fist_char, if: :title
 
   def blank_stars
     5 - difficult
