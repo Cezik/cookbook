@@ -12,6 +12,7 @@
               class: "bg-placeholder-img card-img-top", height: '225', width: '100%'),
               food_category_recipe_path(f.food_category_id, f.id))
             %>
+            <%= will_paginate f, renderer: BootstrapPagination::Rails %>
 
             <!--
             <%# # TODO: find some way to add part of below code to the image tag from above %>
@@ -32,14 +33,20 @@
                   <%= link_to t('main.show_recipe'), food_category_recipe_path(f.food_category_id, f.id), class: "btn btn-primary" %>
 
                   <%= link_to vote_food_category_recipe_path(f.food_category_id, f), method: :post, class: 'btn btn-primary' do %>
-                    <% if current_user.voted_up_on? f %>
-                      <font color="yellow">
-                        <strong>
-                          <span class="glyphicon glyphicon-thumbs-up"></span>
-                          <%= t('activerecord.attributes.recipe.like') %>
-                          <span class="badge"><%= f.get_upvotes.size %></span>
-                        </strong>
-                      </font>
+                    <% if user_signed_in? %>
+                      <% if current_user.voted_up_on? f %>
+                        <font color="yellow">
+                          <strong>
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            <%= t('activerecord.attributes.recipe.like') %>
+                            <span class="badge"><%= f.get_upvotes.size %></span>
+                          </strong>
+                        </font>
+                      <% else %>
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        <%= t('activerecord.attributes.recipe.like') %>
+                        <span class="badge"><%= f.get_upvotes.size %></span>
+                      <% end %>
                     <% else %>
                       <span class="glyphicon glyphicon-thumbs-up"></span>
                       <%= t('activerecord.attributes.recipe.like') %>
@@ -48,14 +55,20 @@
                   <% end %>
 
                   <%= link_to vote_food_category_recipe_path(f.food_category_id, f.id), method: :delete, class: 'btn btn-primary' do %>
-                    <% if current_user.voted_down_on? f %>
-                      <font color="yellow">
-                        <strong>
-                          <span class="glyphicon glyphicon-thumbs-down"></span>
-                          <%= t('activerecord.attributes.recipe.hate') %>
-                          <span class="badge"><%= f.get_downvotes.size %></span>
-                        </strong>
-                      </font>
+                    <% if user_signed_in? %>
+                      <% if current_user.voted_down_on? f %>
+                        <font color="yellow">
+                          <strong>
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                            <%= t('activerecord.attributes.recipe.hate') %>
+                            <span class="badge"><%= f.get_downvotes.size %></span>
+                          </strong>
+                        </font>
+                      <% else %>
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                        <%= t('activerecord.attributes.recipe.hate') %>
+                        <span class="badge"><%= f.get_downvotes.size %></span>
+                      <% end %>
                     <% else %>
                       <span class="glyphicon glyphicon-thumbs-down"></span>
                       <%= t('activerecord.attributes.recipe.hate') %>
