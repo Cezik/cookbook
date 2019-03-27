@@ -41,17 +41,19 @@ gem 'autoprefixer-rails'
 
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
-gem 'bootstrap-sass', '3.4.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'simple_form'
 gem 'devise'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'acts_as_votable', '~> 0.12.0'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do

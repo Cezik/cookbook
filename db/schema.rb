@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_173734) do
+ActiveRecord::Schema.define(version: 2019_03_27_165027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_01_18_173734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_food_categories_on_title", unique: true
+  end
+
+  create_table "oauth_profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "uid"
+    t.string "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_oauth_profiles_on_provider_and_uid"
+    t.index ["user_id"], name: "index_oauth_profiles_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -71,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_01_18_173734) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "oauth_profiles", "users"
   add_foreign_key "recipes", "food_categories"
   add_foreign_key "recipes", "users"
 end
