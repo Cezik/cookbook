@@ -17,6 +17,7 @@ module Cookbook
     # the framework and any gems in your application.
     config.i18n.available_locales = [:en, :pl]
     config.i18n.default_locale = :pl
+    config.i18n.fallbacks = [I18n.default_locale]
 
   end
 end
