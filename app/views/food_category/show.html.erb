@@ -53,10 +53,10 @@
                     </span>
                   </button> -->
 
-                  <% if can?(:update, f) %>
+                  <% if user_signed_in? && can?(:update, f) %>
                     <%= link_to t('main.edit'), edit_food_category_recipe_path(@foodcategory.id, f.id), class: "btn btn-primary" %>
                   <% end %>
-                  <% if can?(:destroy, f) %>
+                  <% if user_signed_in? && can?(:destroy, f) %>
                     <%= link_to t('main.delete'), food_category_recipe_path(@foodcategory.id, f.id), method: :delete, class: "btn btn-primary", data: { confirm: t('recipe.delete_confirm') } %>
                   <% end %>
                 </div>
